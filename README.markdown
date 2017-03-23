@@ -14,6 +14,29 @@ It's features include:
 -   Advisory locking
 -   Flushing (via `fsync()`)
 
+Examples
+--------
+
+The `example` directory contains some basic examples of usage.
+
+You can test advisory locking with the `lock` example program. Type:
+
+    lock lockfile.lock "Hello, world." 30 &
+    lock lockfile.lock 'Heeey!' 0 &
+
+The first process will write the message "Hello, world." and wait for 30
+seconds before releasing the lock. Concatenate the file with:
+
+    cat lockfile.lock
+
+and you should see the contents "Hello, world."
+
+After 30 seconds, both processes should be finished. At this point,
+concatenate the file again. You should see "Heeey! world."
+
+Note that both files start writing at position 0, which is why "Hello,"
+from the first process was overwritten.
+
 Portability
 -----------
 
