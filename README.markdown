@@ -12,6 +12,7 @@ It's features include:
 -   Directories
 -   Files
 -   Advisory locking
+-   Flushing (via `fsync()`)
 
 Portability
 -----------
