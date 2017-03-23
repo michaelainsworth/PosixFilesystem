@@ -1,0 +1,15 @@
+" Function to run 'make'
+function! Make()
+    let l:old_makeprg = &makeprg
+    let &makeprg='script/make.sh'
+    make
+    let &makeprg = l:old_makeprg
+endfunction
+
+nnoremap <f5> :call Make()<cr>
+
+" Search these directories in the project
+let &path .= ', ' . $PWD . '/document/**'
+let &path .= ', ' . $PWD . '/script/**'
+let &path .= ', ' . $PWD . '/source/**'
+
